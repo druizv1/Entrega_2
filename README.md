@@ -52,3 +52,14 @@ Yilmar David Jordan Murillo
 
 -Verifies if the numeral is zero.
 
+BIBLIOGRAFIA:
+
+Barendregt, H. P. (1984). The Lambda Calculus: Its Syntax and Semantics (2nd ed.). North-Holland.
+
+Replit Inc. (2025). Replit: The collaborative browser-based IDE. https://replit.com/
+
+Python Software Foundation. (2025). The Python Language Reference, Release 3.11.5. https://docs.python.org/3/
+
+Universidad de los Andes. (2025). Apuntes y materiales de clase sobre cálculo lambda. Departamento de Ciencias de la Computación.
+
+
