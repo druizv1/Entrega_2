@@ -4,62 +4,37 @@ David Ruiz Vallejo
 Yilmar David Jordan Murillo
 
 
--These represent boolean values.
+-pred ≡ \n f x. n (\g h. h (g f)) (\u. x) (\u. u)
 
--(true) returns the first argument, while (false) returns the second.
+Explicación:
 
--This behavior allows them to be used as conditional logic operators (like if-else).
+Esta es una forma clásica de definir el predecesor de un número en la codificación de Church.
 
--(pair)(m)(n) constructs a tuple-like structure by returning a function that expects a selector z.
+La función aplica una técnica llamada "pair encoding", en la que se usa una estructura de par para rastrear el valor actual y el anterior durante la iteración.
 
--(fst)(p) retrieves the first element from the pair using the true function.
+n es el número Church del que queremos obtener el predecesor.
 
--(snd)(p) retrieves the second element using the false function.
+El resultado es otro número Church que representa n - 1.
 
--(I) is the identity function and is used here to represent 0.
 
--(S) is the successor function.
+-succ ≡ \n f x. f (n f x)
+Explicación:
 
--It encodes a number by pairing (false) with the previous number.
+Esta es la definición estándar de sucesor en Church encoding.
 
--Think of it as: S(n) = (false, n)
+Toma un número n, una función f y un valor inicial x.
 
--(P) is the predecessor function.
+Aplica f una vez más que n f x, es decir, hace n + 1 aplicaciones de f.
 
--When you apply (false) to a number created with (S), you extract its second element—i.e., the previous number.
 
--Since a numeral is encoded as a pair, this gives us access to its predecessor.
+-iszero ≡ \m. m (\x t f. f) true
+Explicación:
 
--(Zero)(n) tests whether (n) is zero.
+Esta función verifica si un número Church es igual a cero.
 
--Since (zero = I), applying (true) to it returns (true)
+Aplica al número una función que siempre devuelve false y arranca con true.
 
--For any (n ≠ 0) (created via S), the pair structure returns (false).
+Si el número aplica esa función cero veces, entonces se queda con true (es cero).
 
--to_int(n) is a helper function to convert a Barendregt numeral to a Python integer.
-
--It repeatedly applies the predecessor function until an exception occurs (likely due to reaching a form that no longer supports further decomposition).
-
--pretty_print(n) also converts a numeral to an integer recursively.
-
--It uses the Zero test to determine if n is zero.
-
--Otherwise, it calls itself on the predecessor and adds 1.
-
--Outputs the result of applying S to 0 (should give 1).
-
--Applies P to 1 (the successor of 0), which should return 0.
-
--Verifies if the numeral is zero.
-
-BIBLIOGRAFIA:
-
-Barendregt, H. P. (1984). The Lambda Calculus: Its Syntax and Semantics (2nd ed.). North-Holland.
-
-Replit Inc. (2025). Replit: The collaborative browser-based IDE. https://replit.com/
-
-Python Software Foundation. (2025). The Python Language Reference, Release 3.11.5. https://docs.python.org/3/
-
-Universidad de los Andes. (2025). Apuntes y materiales de clase sobre cálculo lambda. Departamento de Ciencias de la Computación.
-
+Si aplica al menos una vez, cambia a false.
 
